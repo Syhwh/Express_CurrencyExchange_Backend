@@ -5,9 +5,7 @@
     "node": true,
     "jest": true
   },
-  "extends": [
-    "airbnb-base"
-  ],
+  "extends": ["airbnb-base"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -17,8 +15,18 @@
   },
   "rules": {
     "linebreak-style": ["error", "windows"],
-    "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": true
-    }]
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "comma-dangle": ["error", {
+      "arrays": "never",
+      "objects": "never",
+      "imports": "never",
+      "exports": "never",
+      "functions": "never"
+  }]
   }
 }
