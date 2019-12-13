@@ -1,0 +1,55 @@
+{
+  "name": "express_currencyexchange_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "pretty": "prettier --write --tab-width 2 \"src/**/*.js\"",
+    "precommit": "lint-staged && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Syhwh/Express_CurrencyExchange_Backend.git"
+  },
+  "author": "swg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Syhwh/Express_CurrencyExchange_Backend/issues"
+  },
+  "homepage": "https://github.com/Syhwh/Express_CurrencyExchange_Backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "mongoose": "^5.8.1"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "supertest": "^4.0.2",
+    "tslint-config-prettier": "^1.18.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run pretty",
+      "git add"
+    ]
+  }
+}
