@@ -1,6 +1,9 @@
 const request = require('supertest');
 const User = require('../database/models/userSchema');
 const app = require('../server/server');
+const { setupDB } = require('./test.setup');
+
+setupDB('testApiDatabase');
 
 describe(' API Endpoints', () => {
   test('create a new user', async (done) => {

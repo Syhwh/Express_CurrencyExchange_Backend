@@ -1,6 +1,9 @@
 const request = require('supertest');
 const app = require('../server/server');
 const CurrencyRate = require('../database/models/currencyRateSchemma');
+const { setupDB } = require('./test.setup');
+
+setupDB('testApiDatabase');
 
 async function createTestRates() {
   const currencyData = {
@@ -25,30 +28,6 @@ describe('User Post Endpoints', () => {
     expect(rate[0]).toHaveProperty('exchangeCurrencyRate', expect.any(Number));
     done();
   });
-
-  test('make a currency conversion', async (done) => {
-    await createTestRates();
-    const user = await request(app)
-      .post('/register')
-      .send({
-        userEmail: 'user2@test.com',
-        userPassword: '1234'
-      });
-    const conversion = await request(app)
-      .post('/api/convert')
-      .set('authorization', `Bearer ${user.body.token}`)
-      .query({
-        from: 'USD',
-        to: 'EUR',
-        amount: 100
-      });
-    expect(conversion.body).toBeTruthy();
-    expect(conversion.statusCode).toEqual(200);
-    expect(conversion.body.message.success).toBe(true);
-    expect(conversion.body.message.savedUserExchangeData.result).toBe(50);
-    done();
-  });
-
   test('invalid token format in a currency conversion', async (done) => {
     await createTestRates();
     const user = await request(app)
@@ -98,6 +77,28 @@ describe('User Post Endpoints', () => {
     expect(conversion.body).toBeTruthy();
     expect(conversion.statusCode).toEqual(401);
     expect(conversion.body.error).toBe('No token provided');
+    done();
+  });
+  test('make a currency conversion', async (done) => {
+    await createTestRates();
+    const user = await request(app)
+      .post('/register')
+      .send({
+        userEmail: 'user@test.com',
+        userPassword: '1234'
+      });
+    const conversion = await request(app)
+      .post('/api/convert')
+      .set('authorization', `Bearer ${user.body.token}`)
+      .query({
+        from: 'USD',
+        to: 'EUR',
+        amount: 100
+      });
+    expect(conversion.body).toBeTruthy();
+    expect(conversion.statusCode).toEqual(200);
+    expect(conversion.body.message.success).toBe(true);
+    expect(conversion.body.message.savedUserExchangeData.result).toBe(50);
     done();
   });
 });
