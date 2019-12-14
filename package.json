@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=20000",
+    "dev": "cross-env NODE_ENV=develop nodemon src/index.js",
+    "test": "cross-env NODE_ENV=test jest ",
     "pretty": "prettier --write --tab-width 2 \"src/**/*.js\"",
     "precommit": "lint-staged && npm test"
   },
@@ -61,6 +61,6 @@
     "semi": true,
     "singleQuote": true,
     "tailingComma": "none",
-    "arrowParens": "always" 
+    "arrowParens": "always"
   }
 }

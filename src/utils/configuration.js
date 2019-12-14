@@ -2,17 +2,30 @@
 Port configuration
 Mongoose db configuration
 */
-
-const config = {
-  port: process.env.PORT || 3001,
-  mongoose: {
-    db: process.env.MONGO_URI || 'mongodb://localhost:27017/currencyApi',
-    options: {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useCreateIndex: true
+if (process.env.NODE_ENV === 'test') {
+  const config = {
+    port: process.env.PORT || 3001,
+    mongoose: {
+      db: process.env.MONGO_URI_TEST,
+      options: {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+        useCreateIndex: true
+      }
     }
-  }
-};
-
-module.exports = config;
+  };
+  module.exports = config;
+} else {
+  const config = {
+    port: process.env.PORT || 3001,
+    mongoose: {
+      db: process.env.MONGO_URI,
+      options: {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+        useCreateIndex: true
+      }
+    }
+  };
+  module.exports = config;
+}

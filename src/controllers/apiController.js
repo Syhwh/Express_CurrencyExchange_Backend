@@ -21,6 +21,7 @@ module.exports = {
         .limit(1);
 
       // make the conversion
+      // eslint-disable-next-line operator-linebreak
       const exchangeResult =
         Number(query.amount) * rate[0].exchangeCurrencyRate;
       const userExchangeData = {

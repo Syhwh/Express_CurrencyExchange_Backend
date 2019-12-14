@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 
-mongoose.set('useCreateIndex', true);
-
-mongoose.promise = global.Promise;
-
 async function removeAllCollections() {
   const collections = await mongoose.connection.db.collections();
   collections.map(async (collection) => {
@@ -26,10 +22,11 @@ module.exports = {
   setupDB(databaseName) {
     // Connect to Mongoose
     beforeAll(async () => {
-      const url = `'mongodb://localhost:27017/${databaseName}`;
-      await mongoose.connect(url, {
+      const url = `mongodb://localhost:27017/${databaseName}`;
+      await mongoose.connect(process.env.MONGO_URI_TEST || url, {
+        useUnifiedTopology: true,
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useCreateIndex: true
       });
     });
 
