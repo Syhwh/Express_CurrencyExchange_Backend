@@ -1,10 +1,6 @@
 const request = require('supertest');
 const app = require('../server/server');
 const CurrencyRate = require('../database/models/currencyRateSchemma');
-const { setupDB } = require('./test.setup');
-
-// Setup a Test Database
-setupDB('ApiTestDatabase');
 
 async function createTestRates() {
   const currencyData = {

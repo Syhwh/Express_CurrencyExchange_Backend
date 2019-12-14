@@ -1,16 +1,25 @@
+/* eslint-disable no-useless-return */
 const mongoose = require('mongoose');
 
 async function removeAllCollections() {
   const collections = await mongoose.connection.db.collections();
   collections.map(async (collection) => {
-    await collection.deleteMany();
+    try {
+      await collection.deleteMany();
+    } catch (error) {
+      if (error.message === 'ns not found') return;
+    }
   });
 }
 
 async function dropAllCollections() {
   const collections = await mongoose.connection.db.collections();
   collections.map(async (collection) => {
-    await collection.drop();
+    try {
+      await collection.drop();
+    } catch (error) {
+      if (error.message === 'ns not found') return;
+    }
   });
 }
 

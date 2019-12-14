@@ -1,10 +1,6 @@
 const request = require('supertest');
 const User = require('../database/models/userSchema');
 const app = require('../server/server');
-const { setupDB } = require('./test.setup');
-
-// Setup a Test Database
-setupDB('ApiTestDatabase');
 
 describe(' API Endpoints', () => {
   test('create a new user', async (done) => {
@@ -74,6 +70,27 @@ describe(' API Endpoints', () => {
       });
     expect(res.statusCode).toEqual(401);
     expect(res.body).toHaveProperty('message', 'Invalid user or password');
+    done();
+  });
+
+  test('user logout', async (done) => {
+    await request(app)
+      .post('/register')
+      .send({
+        userEmail: 'user@test.com',
+        userPassword: '1234'
+      });
+    const user = await request(app)
+      .post('/login')
+      .send({
+        userEmail: 'user@test.com',
+        userPassword: '1234'
+      });
+    const res = await request(app)
+      .post('/logout')
+      .set('authorization', `Bearer ${user.body.token}`);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty('message', 'User logged out');
     done();
   });
 });
