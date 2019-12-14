@@ -24,6 +24,7 @@ async function dropAllCollections() {
 }
 
 async function dropTestDataBase() {
+  mongoose.connection.removeAllListeners('open');
   await mongoose.connection.db.dropDatabase();
 }
 
@@ -46,7 +47,6 @@ module.exports = {
 
     // Disconnect Mongoose
     afterAll(async () => {
-      mongoose.connection.removeAllListeners('open');
       await dropAllCollections();
       await dropTestDataBase();
       await mongoose.connection.close();
