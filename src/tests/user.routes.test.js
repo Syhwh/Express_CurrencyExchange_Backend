@@ -6,7 +6,7 @@ const app = require('../server/server');
 setupDB('userTest');
 
 describe('User Post Endpoints', () => {
-  test('create a new user', async done => {
+  test('create a new user', async (done) => {
     const res = await request(app)
       .post('/register')
       .send({
@@ -22,7 +22,7 @@ describe('User Post Endpoints', () => {
     done();
   });
 
-  test('validate the user is unique', async done => {
+  test('validate the user is unique', async (done) => {
     await request(app)
       .post('/register')
       .send({
@@ -39,7 +39,7 @@ describe('User Post Endpoints', () => {
     done();
   });
 
-  test('login an user', async done => {
+  test('login an user', async (done) => {
     await request(app)
       .post('/register')
       .send({
@@ -58,7 +58,7 @@ describe('User Post Endpoints', () => {
     done();
   });
 
-  test('validate  the user password', async done => {
+  test('validate  the user password', async (done) => {
     await request(app)
       .post('/register')
       .send({
