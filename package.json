@@ -60,6 +60,7 @@
     "tabWidth": 2,
     "semi": true,
     "singleQuote": true,
-    "tailingComma": "none"
+    "tailingComma": "none",
+    "arrowParens": "always" 
   }
 }
