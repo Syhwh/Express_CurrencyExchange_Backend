@@ -1,8 +1,8 @@
 const userRouter = require('../routes/userRoutes');
-// const currencyRouter = require('../routes/apiRoutes');
+const apiRouter = require('../routes/apiRoutes');
 
 function router(app) {
   app.use(userRouter);
-  // app.use(currencyRouter);
+  app.use(apiRouter);
 }
 module.exports = router;

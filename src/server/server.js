@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use(cors());
 
 // adding morgan to log HTTP requests
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 
 // Database
 require('../database/database');

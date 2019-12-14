@@ -19,13 +19,14 @@ const UserSchema = mongoose.Schema({
     type: Date,
     default: Date.now()
   },
-  termsAndConditios: {
+  termsAndConditions: {
     type: Boolean,
     default: true,
     require: true
   },
   image: []
 });
+
 // validate unique email
 UserSchema.plugin(uniqueValidator);
 
