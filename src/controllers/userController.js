@@ -34,14 +34,6 @@ module.exports = {
         expiresIn: 1000 * 60 * 60
       });
       req.userId = user._id;
-      // const currencyData = {
-      //   countryCode: 'USA',
-      //   baseCurrencyCode: 'USD',
-      //   exchangeCurrencyCode: 'COP',
-      //   exchangeCurrencyRate: 0.9
-      // };
-
-      // const currency = await CurrencyRate.create(currencyData);
       res.status(200).json({ message: 'User logged', token, user });
     } catch (error) {
       res.status(403).send({ error });

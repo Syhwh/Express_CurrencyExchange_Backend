@@ -1,4 +1,4 @@
-const Currency = require('../database/models/currencyRateSchemma');
+const CurrencyRate = require('../database/models/currencyRateSchemma');
 
 function generateRate(min, max) {
   return Math.random() * (max - min) + min;
@@ -7,10 +7,12 @@ function generateRate(min, max) {
 const currencyData = {
   countryCode: 'USA',
   baseCurrencyCode: 'USD',
-  rate: { exchageCurrencyCode: 'EUR', exchageCurrencyRate: generateRate(0, 5) }
+  exchangeCurrencyCode: 'EUR',
+  exchageCurrencyRate: generateRate(0, 5)
 };
+
 const saveRates = async () => {
-  await Currency.create(currencyData);
+  await CurrencyRate.create(currencyData);
 };
 
 function startGeneratingRates() {
