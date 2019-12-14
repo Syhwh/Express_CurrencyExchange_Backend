@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=20000",
     "pretty": "prettier --write --tab-width 2 \"src/**/*.js\"",
     "precommit": "lint-staged && npm test"
   },

@@ -2,10 +2,10 @@ const request = require('supertest');
 const { setupDB } = require('./test.setup');
 const User = require('../database/models/userSchema');
 const app = require('../server/server');
-// Setup a Test Database
-setupDB('userTest');
 
-describe('User Post Endpoints', () => {
+// Setup a Test Database
+
+describe(' API Endpoints', () => {
   test('create a new user', async (done) => {
     const res = await request(app)
       .post('/register')

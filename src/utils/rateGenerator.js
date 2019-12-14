@@ -8,7 +8,7 @@ const currencyData = {
   countryCode: 'USA',
   baseCurrencyCode: 'USD',
   exchangeCurrencyCode: 'EUR',
-  exchageCurrencyRate: generateRate(0, 5)
+  exchangeCurrencyRate: generateRate(0, 5)
 };
 
 const saveRates = async () => {
@@ -16,9 +16,11 @@ const saveRates = async () => {
 };
 
 function startGeneratingRates() {
-  setInterval(saveRates, 1000 * 60 * 10);
+  setInterval(saveRates, 1000 * 60);
 }
 
 module.exports = {
+  generateRate,
+  currencyData,
   startGeneratingRates
 };

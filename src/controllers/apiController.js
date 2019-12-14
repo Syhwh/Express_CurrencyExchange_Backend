@@ -1,4 +1,4 @@
-const currencyRate = require('../database/models/currencyRateSchemma');
+const CurrencyRate = require('../database/models/currencyRateSchemma');
 const UserCurrencyExchange = require('../database/models/usersCurrencyExchange');
 
 module.exports = {
@@ -10,15 +10,16 @@ module.exports = {
       to: req.query.to,
       amount: req.query.amount
     };
+
     try {
       // get the lastest exchange rate
-      const rate = await currencyRate
-        .find({
-          baseCurrencyCode: query.from,
-          exchangeCurrencyCode: query.to
-        })
+      const rate = await CurrencyRate.find({
+        baseCurrencyCode: query.from,
+        exchangeCurrencyCode: query.to
+      })
         .sort({ date: '-1' })
         .limit(1);
+
       // make the conversion
       const exchangeResult =
         Number(query.amount) * rate[0].exchangeCurrencyRate;
@@ -43,7 +44,7 @@ module.exports = {
         }
       });
     } catch (error) {
-      res.status(403).json({ error });
+      res.status(404).json({ message: 'Not found' });
     }
   }
 };

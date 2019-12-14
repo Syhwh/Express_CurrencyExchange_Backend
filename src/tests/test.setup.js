@@ -1,20 +1,25 @@
 const mongoose = require('mongoose');
 
 mongoose.set('useCreateIndex', true);
+
 mongoose.promise = global.Promise;
 
 async function removeAllCollections() {
   const collections = await mongoose.connection.db.collections();
-  collections.map(async collection => {
+  collections.map(async (collection) => {
     await collection.deleteMany();
   });
 }
 
 async function dropAllCollections() {
   const collections = await mongoose.connection.db.collections();
-  collections.map(async collection => {
+  collections.map(async (collection) => {
     await collection.drop();
   });
+}
+
+async function dropTestDataBase() {
+  await mongoose.connection.db.dropDatabase();
 }
 
 module.exports = {
@@ -36,6 +41,7 @@ module.exports = {
     // Disconnect Mongoose
     afterAll(async () => {
       await dropAllCollections();
+      await dropTestDataBase();
       await mongoose.connection.close();
     });
   }
