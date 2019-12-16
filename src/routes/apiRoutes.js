@@ -7,5 +7,5 @@ const {
 } = require('../middlewares/authenticationVerifier');
 
 router.post('/api/convert', authenticationVerifier, api.convert);
-
+router.get('/api/rates', api.getRates);
 module.exports = router;

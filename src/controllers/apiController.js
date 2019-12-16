@@ -44,5 +44,16 @@ module.exports = {
     } catch (error) {
       res.status(404).json({ message: 'Not found' });
     }
+  },
+  async getRates(req, res) {
+    try {
+      const rates = await CurrencyRate.find().sort({ date: '1' });
+      res.status(200).json({
+        success: true,
+        rates
+      });
+    } catch (error) {
+      res.status(404).json({ message: 'Not found' });
+    }
   }
 };

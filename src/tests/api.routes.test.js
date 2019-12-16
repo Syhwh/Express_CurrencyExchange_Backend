@@ -16,7 +16,7 @@ async function createTestRates() {
   return result;
 }
 
-describe('User Post Endpoints', () => {
+describe('Api Endpoints', () => {
   test('validate the rate exist', async (done) => {
     await createTestRates();
     const rate = await CurrencyRate.find();
@@ -99,6 +99,14 @@ describe('User Post Endpoints', () => {
     expect(conversion.statusCode).toEqual(200);
     expect(conversion.body.success).toBe(true);
     expect(conversion.body.savedUserExchangeData.result).toBe(50);
+    done();
+  });
+  test('get the currency exchanged rates', async (done) => {
+    await createTestRates();
+    const rates = await request(app).get('/api/rates');
+    expect(rates.body).toBeTruthy();
+    expect(rates.statusCode).toEqual(200);
+    expect(rates.body.success).toBe(true);
     done();
   });
 });

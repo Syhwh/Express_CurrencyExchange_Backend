@@ -16,7 +16,7 @@ const saveRates = async () => {
 };
 
 function startGeneratingRates() {
-  setInterval(saveRates, 1000 * 60);
+  setInterval(saveRates, 1000 * 60 * 5);
 }
 
 module.exports = {

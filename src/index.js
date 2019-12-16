@@ -16,10 +16,10 @@ const server = http.createServer(app);
 const io = socket(server);
 
 io.on('connection', (client) => {
-  client.on('subscribeToTimer', (interval) => {
+  client.on('subscribeToUpdateRates', (interval) => {
     setInterval(async () => {
-      const rate = await CurrencyRate.find().sort({ date: '-1' });
-      client.emit('timer', rate);
+      const rate = await CurrencyRate.find().sort({ date: '1' });
+      client.emit('getRates', rate);
     }, interval);
   });
   client.on('disconnect', () => {
