@@ -72,7 +72,7 @@ describe(' API Endpoints', () => {
         userPassword: '12345'
       });
     expect(res.statusCode).toEqual(401);
-    expect(res.body).toHaveProperty('message', 'Invalid user or password');
+    expect(res.body).toHaveProperty('error', 'Invalid user or password');
     done();
   });
 

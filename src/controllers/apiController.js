@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 const CurrencyRate = require('../database/models/currencyRateSchemma');
 const UserCurrencyExchange = require('../database/models/usersCurrencyExchange');
 
@@ -8,9 +9,8 @@ module.exports = {
     const query = {
       from: req.query.from,
       to: req.query.to,
-      amount: req.query.amount
+      amount: parseFloat(req.query.amount)
     };
-
     try {
       // get the lastest exchange rate
       const rate = await CurrencyRate.find({
@@ -21,7 +21,6 @@ module.exports = {
         .limit(1);
 
       // make the conversion
-      // eslint-disable-next-line operator-linebreak
       const exchangeResult =
         Number(query.amount) * rate[0].exchangeCurrencyRate;
       const userExchangeData = {
@@ -39,10 +38,8 @@ module.exports = {
       );
       // send the succesfull response
       res.status(200).json({
-        message: {
-          success: true,
-          savedUserExchangeData
-        }
+        success: true,
+        savedUserExchangeData
       });
     } catch (error) {
       res.status(404).json({ message: 'Not found' });

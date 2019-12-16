@@ -10,7 +10,8 @@ module.exports = {
             error: 'Bad token provided'
           });
         }
-        req.jwt = jwt.verify(authorization[1], process.env.JWTSECRET);
+        jwt.verify(authorization[1], process.env.JWTSECRET);
+
         return next();
       } catch (err) {
         return res.status(403).send({

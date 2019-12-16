@@ -97,8 +97,8 @@ describe('User Post Endpoints', () => {
       });
     expect(conversion.body).toBeTruthy();
     expect(conversion.statusCode).toEqual(200);
-    expect(conversion.body.message.success).toBe(true);
-    expect(conversion.body.message.savedUserExchangeData.result).toBe(50);
+    expect(conversion.body.success).toBe(true);
+    expect(conversion.body.savedUserExchangeData.result).toBe(50);
     done();
   });
 });
