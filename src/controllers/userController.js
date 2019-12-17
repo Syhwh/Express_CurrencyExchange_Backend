@@ -16,7 +16,7 @@ module.exports = {
       });
       res.status(200).json({ message: 'User Created', token });
     } catch (error) {
-      res.status(403).json({ error });
+      res.status(403).json({ error: 'That user already exist' });
     }
   },
   // login an user
