@@ -15,10 +15,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // enabling CORS for all requests
-app.use(cors());
+app.use(
+  cors({
+    origin: '*'
+  })
+);
 
 // adding morgan to log HTTP requests
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'develop') {
+  app.use(morgan('dev'));
+}
 
 // Database
 require('../database/database');
