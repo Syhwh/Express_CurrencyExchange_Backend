@@ -8,4 +8,5 @@ const {
 
 router.post('/api/convert', authenticationVerifier, api.convert);
 router.get('/api/rates', api.getRates);
+router.get('/api/me', authenticationVerifier, api.getUserExchanges);
 module.exports = router;
